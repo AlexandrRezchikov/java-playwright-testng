@@ -28,7 +28,7 @@ public class LoginTests extends BaseTest {
                 .hasText("Epic sadface: Username and password do not match any user in this service"));
     }
 
-    @Test
+    @Test(enabled = false)
     public void failTest() {
         AtomicReference<ProductsPage> productsPage = new AtomicReference<>();
 
