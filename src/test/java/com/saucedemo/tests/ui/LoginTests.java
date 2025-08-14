@@ -39,8 +39,8 @@ public class LoginTests extends BaseTest {
         step("Падение теста", () -> assertThat(productsPage.get().getTitle()).isVisible());
     }
 
-    @DataProvider(name = "test data")
-    public Object[][] testData() {
+    @DataProvider(name = "login data")
+    public Object[][] loginData() {
         return new Object[][]{
                 {"", "password", "Username"},
                 {"username", "", "Password"},
@@ -48,7 +48,7 @@ public class LoginTests extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "test data")
+    @Test(dataProvider = "login data")
     public void authorizationWithEmptyUserDataTest(String username, String password, String errorMessage) {
         step("Авторизация с пустыми данными", () -> loginPage.loginAs(username, password));
 
