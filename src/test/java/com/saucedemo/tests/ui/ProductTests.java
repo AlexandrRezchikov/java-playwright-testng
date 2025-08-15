@@ -59,24 +59,6 @@ public class ProductTests extends BaseTest {
         });
     }
 
-    @Test
-    public void cleanCartTest() {
-        AtomicReference<CartPage> cartPage = new AtomicReference<>();
-
-        step("Логин и добавление товаров", () -> cartPage.set(loginPage
-                .login()
-                .addItemToCart("Sauce Labs Backpack")
-                .addItemToCart("Sauce Labs Bike Light")
-                .addItemToCart("Sauce Labs Bolt T-Shirt")
-                .clickOnCart()));
-
-        step("Проверка количества товаров", () -> assertThat(cartPage.get().getItems()).hasCount(3));
-
-        step("Очистка корзины", () -> cartPage.get().cleanCart());
-
-        step("Проверка пустой корзины", () -> assertThat(cartPage.get().getItems()).isHidden());
-    }
-
     @DataProvider(name = "filters and prices")
     public Object[][] filtersAndPrices() {
         return new Object[][]{
@@ -97,4 +79,21 @@ public class ProductTests extends BaseTest {
         step("Проверка цены первого товара", () ->
                 assertThat(productsPage.get().getProductPrices().first()).hasText(price));
     }
+
+    @Test
+    public void addToCartTest() {
+        AtomicReference<ProductsPage> productsPage = new AtomicReference<>();
+        String itemName = "Sauce Labs Backpack";
+
+        step("Авторизация", () -> productsPage.set(loginPage.login()));
+
+        step("Проверка добавления товара в корзину", () -> {
+            assertThat(productsPage.get().addToCartButton(itemName)).hasText("Add to cart");
+            productsPage.get().addItemToCart(itemName);
+            assertThat(productsPage.get().addToCartButton(itemName)).hasText("Remove");
+            assertThat(productsPage.get().getCountItemInCart()).hasText("1");
+        });
+    }
+
+
 }

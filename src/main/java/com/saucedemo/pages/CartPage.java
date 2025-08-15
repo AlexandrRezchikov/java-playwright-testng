@@ -3,6 +3,7 @@ package com.saucedemo.pages;
 import com.microsoft.playwright.Locator;
 import com.saucedemo.components.Header;
 import com.saucedemo.models.ShipInfo;
+import com.saucedemo.utils.BasePageFactory;
 import io.qameta.allure.Step;
 
 public final class CartPage extends BasePage {
@@ -57,5 +58,16 @@ public final class CartPage extends BasePage {
             page.locator(removeBtn).first().click();
         }
         return this;
+    }
+
+    @Step("Click on Continue Shopping")
+    public ProductsPage clickOnContinueShopping() {
+        page.locator("#continue-shopping").click();
+        return BasePageFactory.createInstance(page, ProductsPage.class);
+    }
+
+    @Step("Get error message")
+    public Locator getErrorMessage() {
+        return page.locator("//h3[@data-test='error']");
     }
 }

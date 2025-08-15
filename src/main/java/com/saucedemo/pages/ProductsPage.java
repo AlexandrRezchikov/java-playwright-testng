@@ -56,4 +56,12 @@ public final class ProductsPage extends BasePage {
     public Locator getProductPrices() {
         return page.locator(".inventory_item_price");
     }
+
+    public Locator addToCartButton(String itemName) {
+        return page.locator("//div[text()='%s']//ancestor::div[2]//button".formatted(itemName));
+    }
+
+    public Locator getCountItemInCart() {
+        return header.countItemsInCart();
+    }
 }

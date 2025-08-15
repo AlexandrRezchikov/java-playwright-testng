@@ -50,7 +50,7 @@ public abstract class BaseTest {
                         .put("[Timeout]", String.valueOf(config().timeout()))
                         .put("[Base URL]", config().baseUrl())
                         .build(),
-                config().allureResultsDir());
+                config().allureResultsDir() + "/");
     }
 
     @BeforeMethod
