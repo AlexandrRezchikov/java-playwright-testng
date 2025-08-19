@@ -1,4 +1,4 @@
-# 🚀 SauceDemo Test Automation Framework
+# 🚀 Test Automation Framework
 
 Автоматизированное тестирование веб-приложения SauceDemo с использованием:
 - **Java 17**
