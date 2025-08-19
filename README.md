@@ -17,8 +17,8 @@
 
 ### Установка
 ```bash
-git clone https://github.com/AlexandrRezchikov/saucedemo-test.git
-cd saucedemo-test
+git clone https://github.com/AlexandrRezchikov/java-playwright-testng.git
+cd java-playwright-testng
 mvn clean install
 ```
 
@@ -26,11 +26,11 @@ mvn clean install
 
 ### Локальный запуск
 ```bash
-# Стандартный запуск (headless)
+# Стандартный запуск (headless=true)
 mvn test
 
 # С GUI браузером
-mvn test -Pheaded
+mvn test -Dheadless=false
 
 # Для конкретного браузера (по дефолту используется chrome)
 mvn test -Pfirefox  # или -Pwebkit
