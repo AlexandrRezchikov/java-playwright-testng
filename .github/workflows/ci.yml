@@ -33,7 +33,8 @@ jobs:
         run: mvn compile
 
   full-test:
-    # Этот job запускается ТОЛЬКО при ручном запуске (workflow_dispatch) И если выбрана опция run-full-tests
+    # Этот job запускается ТОЛЬКО при ручном запуске (workflow_dispatch)
+    # И если выбрана опция run-full-tests
     if: github.event_name == 'workflow_dispatch' && github.event.inputs.run-full-tests == 'true'
     runs-on: ubuntu-latest
     name: Full Test Suite (Manual)
