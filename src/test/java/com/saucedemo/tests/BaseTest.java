@@ -41,13 +41,13 @@ public abstract class BaseTest {
 
         allureEnvironmentWriter(
                 ImmutableMap.<String, String>builder()
-                        .put("[Platform]", System.getProperty("os.name"))
-                        .put("[Version]", System.getProperty("os.version"))
-                        .put("[Java Version]", System.getProperty("java.version"))
-                        .put("[Browser]", config().browser().toUpperCase())
-                        .put("[Headless]", String.valueOf(config().headless()))
-                        .put("[Slow Motion]", String.valueOf(config().slowMotion()))
-                        .put("[Timeout]", String.valueOf(config().timeout()))
+                        .put("[Platform]", "[" + System.getProperty("os.name") + "]")
+                        .put("[Version]", "[" + System.getProperty("os.version") + "]")
+                        .put("[Java Version]", "[" + System.getProperty("java.version") + "]")
+                        .put("[Browser]", "[" + config().browser().toUpperCase() + "]")
+                        .put("[Headless]", "[" + String.valueOf(config().headless()).toUpperCase() + "]")
+                        .put("[Slow Motion]", "[" + config().slowMotion() + " ms]")
+                        .put("[Timeout]", "[" + config().timeout() + " ms]")
                         .put("[Base URL]", config().baseUrl())
                         .build(),
                 config().allureResultsDir() + "/");
