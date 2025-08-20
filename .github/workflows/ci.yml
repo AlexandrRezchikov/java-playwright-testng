@@ -58,7 +58,6 @@ jobs:
         run: |
           npx playwright install --with-deps
           npx playwright install chromium firefox webkit
-
       - name: Run Full Test Suite
         run: mvn clean test
 
