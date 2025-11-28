@@ -17,14 +17,12 @@ public class LoginTests extends BaseTest {
         AtomicReference<ProductsPage> productsPage = new AtomicReference<>();
 
         step("Авторизация", () -> productsPage.set(loginPage.login()));
-
         step("Проверка успешной авторизации", () -> assertThat(productsPage.get().getTitle()).hasText("Products"));
     }
 
     @Test
     public void lockedOutUserTest() {
         step("Авторизация (не правильная)", () -> loginPage.loginAs("wrong", "fake"));
-
         step("Проверка вывода ошибки", () -> assertThat(loginPage.getErrorMessage())
                 .hasText("Epic sadface: Username and password do not match any user in this service"));
     }
@@ -35,7 +33,6 @@ public class LoginTests extends BaseTest {
 
         step("Авторизация", () -> productsPage
                 .set(loginPage.loginAs("fakeUsername", "fakePassword")));
-
         step("Падение теста", () -> assertThat(productsPage.get().getTitle()).isVisible());
     }
 
@@ -51,7 +48,6 @@ public class LoginTests extends BaseTest {
     @Test(dataProvider = "login data")
     public void authorizationWithEmptyUserDataTest(String username, String password, String errorMessage) {
         step("Авторизация с пустыми данными", () -> loginPage.loginAs(username, password));
-
         step("Проверка текста сообщения", () -> assertThat(loginPage.getErrorMessage())
                 .hasText("Epic sadface: %s is required".formatted(errorMessage)));
     }
@@ -60,7 +56,6 @@ public class LoginTests extends BaseTest {
     public void authorizationWithLockedUserTest() {
         step("Авторизация под заблокированным узером", () ->
                 loginPage.loginAs("locked_out_user", "secret_sauce"));
-
         step("Проверка текста сообщения", () -> assertThat(loginPage.getErrorMessage())
                 .hasText("Epic sadface: Sorry, this user has been locked out."));
     }
