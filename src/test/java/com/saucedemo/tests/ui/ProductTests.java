@@ -25,12 +25,9 @@ public class ProductTests extends BaseTest {
         AtomicReference<ProductsPage> productsPage = new AtomicReference<>();
 
         step("Авторизация", () -> productsPage.set(loginPage.login()));
-
         step("Проверка отображения имени первого товара", () ->
                 assertThat(productsPage.get().getProductNames().first()).hasText("Sauce Labs Backpack"));
-
         step("Установка фильтра отображения товаров", () -> productsPage.get().setSortFilter("Name (Z to A)"));
-
         step("Проверка отображения товаров с примененный фильтром", () ->
                 assertThat(productsPage.get().getProductNames().first()).hasText("Test.allTheThings() T-Shirt (Red)"));
     }
@@ -41,13 +38,11 @@ public class ProductTests extends BaseTest {
         AtomicReference<CartPage> cartPage = new AtomicReference<>();
 
         step("Авторизация", () -> productsPage.set(loginPage.login()));
-
         step("Добавление тавара в корзину и проверка имени товара в корзине", () -> {
             String firstItemName = productsPage.get().getProductNames().first().textContent();
             cartPage.set(productsPage.get().addItemToCart(firstItemName).clickOnCart());
             assertThat(cartPage.get().getItems()).containsText(firstItemName);
         });
-
         step("Оформление заказа", () -> {
             ShipInfo shipInfo = ShipInfo.builder()
                     .firstName("Bobby")
@@ -72,10 +67,8 @@ public class ProductTests extends BaseTest {
         AtomicReference<ProductsPage> productsPage = new AtomicReference<>();
 
         step("Авторизация", () -> productsPage.set(loginPage.login()));
-
         step("Установка фильта товаров '%s'".formatted(filter), () ->
                 productsPage.get().setSortFilter(filter));
-
         step("Проверка цены первого товара", () ->
                 assertThat(productsPage.get().getProductPrices().first()).hasText(price));
     }
@@ -86,7 +79,6 @@ public class ProductTests extends BaseTest {
         String itemName = "Sauce Labs Backpack";
 
         step("Авторизация", () -> productsPage.set(loginPage.login()));
-
         step("Проверка добавления товара в корзину", () -> {
             assertThat(productsPage.get().addToCartButton(itemName)).hasText("Add to cart");
             productsPage.get().addItemToCart(itemName);
