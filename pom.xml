@@ -24,7 +24,7 @@
         <owner.version>1.0.12</owner.version>
         <allure.version>2.28.0</allure.version>
         <aspectj.version>1.9.21</aspectj.version>
-        <lombok.version>1.18.36</lombok.version>
+        <lombok.version>1.18.44</lombok.version>
         <suiteXml>testng.xml</suiteXml>
         <headless>false</headless>
     </properties>
@@ -116,6 +116,12 @@
                     <artifactId>*</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.30</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 
