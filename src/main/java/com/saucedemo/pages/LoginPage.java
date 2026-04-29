@@ -3,10 +3,12 @@ package com.saucedemo.pages;
 import com.microsoft.playwright.Locator;
 import com.saucedemo.utils.BasePageFactory;
 import io.qameta.allure.Step;
+import lombok.extern.slf4j.Slf4j;
 
 import static com.saucedemo.config.ConfigurationManager.config;
 import static com.saucedemo.config.ConfigurationManager.userConfig;
 
+@Slf4j
 public final class LoginPage extends BasePage {
 
     @Step("Navigate to the login page")
@@ -40,6 +42,7 @@ public final class LoginPage extends BasePage {
 
     @Step("Login attempt to swag Labs")
     public ProductsPage loginAs(final String username, final String password) {
+        log.info("Login by: [{}]", username);
         return open()
                 .typeUsername(username)
                 .typePassword(password)
