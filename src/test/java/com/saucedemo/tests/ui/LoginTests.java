@@ -12,12 +12,10 @@ import static io.qameta.allure.Allure.step;
 
 public class LoginTests extends BaseTest {
 
-    @Test
+    @Test(description = "Авторизация с валидными кредами")
     public void correctLoginCredentialsTest() {
-        AtomicReference<ProductsPage> productsPage = new AtomicReference<>();
-
-        step("Авторизация", () -> productsPage.set(loginPage.login()));
-        step("Проверка успешной авторизации", () -> assertThat(productsPage.get().getTitle()).hasText("Products"));
+        ProductsPage productsPage = loginPage.login();
+        assertThat(productsPage.getTitle()).hasText("Products");
     }
 
     @Test
